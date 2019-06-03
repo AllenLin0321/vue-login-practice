@@ -18,7 +18,6 @@ const routes = [
       if(store.getters.isAuthenticated) {
         next();
       }else {
-        alert('Please Log In First!');
         next('/signin')
       }
   } }

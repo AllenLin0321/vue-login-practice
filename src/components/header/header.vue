@@ -32,6 +32,9 @@ export default {
   },
   methods: {
     logout() {
+      localStorage.removeItem('token');
+      localStorage.removeItem('userId');
+      localStorage.removeItem('expirationDate');
       this.$store.dispatch('logout');
     }
   }
