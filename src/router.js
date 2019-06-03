@@ -15,7 +15,7 @@ const routes = [
   { path: '/signup', component: SignupPage },
   { path: '/signin', component: SigninPage },
   { path: '/dashboard', component: DashboardPage, beforeEnter (to, from,next) {
-      if(store.state.idToken) {
+      if(store.getters.isAuthenticated) {
         next();
       }else {
         alert('Please Log In First!');
