@@ -4,12 +4,13 @@
       <form @submit.prevent="onSubmit">
         <div class="input" :class="{invalid: $v.email.$error}">
           <label for="email">Mail</label>
-          <input type="email" id="email" v-model="email" @input="$v.email.$touch()" >
+          <!-- @blue -> leave focus -->
+          <input type="email" id="email" v-model="email" @blur="$v.email.$touch()" >
           <p v-if="$v.email.$error">Please provide the valid emial address.</p>
         </div>
-        <div class="input">
+        <div class="input" :class="{invalid: $v.age.$error}">
           <label for="age">Your Age</label>
-          <input type="number" id="age" v-model.number="age">
+          <input type="number" id="age" v-model.number="age" @blur="$v.age.$touch()">
         </div>
         <div class="input">
           <label for="password">Password</label>
@@ -52,7 +53,7 @@
 </template>
 
 <script>
-import { required, email } from "vuelidate/lib/validators";
+import { required, email, numeric, minValue } from "vuelidate/lib/validators";
 
 export default {
   data() {
@@ -70,6 +71,11 @@ export default {
     email: {
       required,
       email
+    },
+    age: {
+      required,
+      numeric,
+      minVal: minValue(18)
     }
   },
   methods: {
