@@ -11,6 +11,8 @@
         <div class="input" :class="{invalid: $v.age.$error}">
           <label for="age">Your Age</label>
           <input type="number" id="age" v-model.number="age" @blur="$v.age.$touch()">
+          <p v-if="!$v.age.minVal">You have tobe at least {{ $v.age.$params.minVal.min }} years old. </p>
+          <p>{{ $v.age }}</p>
         </div>
         <div class="input">
           <label for="password">Password</label>
